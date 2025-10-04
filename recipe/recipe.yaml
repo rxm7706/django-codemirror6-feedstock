@@ -1,8 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
 schema_version: 1
 
 context:
   name: django-codemirror6
-  version: 1.0.1
+  version: "1.0.1"
 
 package:
   name: ${{ name|lower }}
@@ -23,7 +24,7 @@ requirements:
     - setuptools
     - pip
   run:
-    - python >=${{ python_min }}
+    - python >=${{ python_min }},<4.0
     - django
 
 tests:
@@ -31,12 +32,7 @@ tests:
       imports:
         - django_codemirror6
       python_version: ${{ python_min }}.*
-  - requirements:
-      run:
-        - pip
-        - python ${{ python_min }}.*
-    script:
-      - pip check
+      pip_check: true
 
 about:
   summary: Django CodeMirror 6
